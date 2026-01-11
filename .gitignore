@@ -3,7 +3,7 @@ debian-tools
 mkosi.cache
 mkosi.output
 mkosi.tools
-mkosi.tools.manifest
+mkosi.tools.*
 .mkosi-private
 
 mkosi.crt
