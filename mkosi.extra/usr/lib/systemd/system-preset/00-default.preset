@@ -1,17 +1,17 @@
 enable accounts-daemon.service
 enable apparmor.service
-enable avahi-daemon.service
 enable avahi-daemon.socket
 enable bluetooth.service
+enable cups.service
 enable flatpak.service
 enable NetworkManager.service
+enable plasma-setup.service
 enable sddm.service
 enable switcheroo-control.service
 enable systemd-oomd.service
 enable systemd-zram-setup@zram0.service
 enable tuned.service
-enable xdg-desktop-portal.service
-enable xdg-desktop-portal-kde.service
+enable tuned-ppd.service
 
 disable archlinux-keyring-wkd-sync.timer
 disable dirmngr@etc-pacman.d-gnupg.socket
