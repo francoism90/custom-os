@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/sh -eux
 
 cat > /usr/lib/os-release <<EOF
 PRETTY_NAME="$IMAGE_ID $IMAGE_VERSION"

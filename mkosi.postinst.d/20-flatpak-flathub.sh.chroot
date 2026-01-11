@@ -1,0 +1,6 @@
+#!/bin/sh -eux
+
+# Add Flathub to provide app catalog content for Discover (Flatpak backend)
+flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo || true
+
+exit 0
