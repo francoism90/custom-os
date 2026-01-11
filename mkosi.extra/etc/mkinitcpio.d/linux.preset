@@ -1,0 +1,12 @@
+# mkinitcpio preset for CustomOS UKI
+ALL_config="/etc/mkinitcpio.conf"
+ALL_kver="/boot/vmlinuz-linux"
+
+PRESETS=('default')
+
+default_image="/boot/initramfs-linux.img"
+# Write the UKI to the versioned modules directory where mkosi expects it
+# %v expands to the kernel version, e.g. 6.18.4-arch1-1
+default_uki="/usr/lib/modules/%v/customos.efi"
+# Embed a static cmdline matching mkosi.conf; adjust as needed
+default_options="--cmdline 'rw quiet splash'"
