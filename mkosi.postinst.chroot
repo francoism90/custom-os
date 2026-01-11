@@ -1,0 +1,6 @@
+#!/bin/bash
+
+set -ex
+
+# Set '@' as default subvolume
+btrfs subvolume set-default $(btrfs subvolume list / | grep " @\$" | awk '{print $2}') /
