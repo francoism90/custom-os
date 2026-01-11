@@ -1,5 +1,0 @@
-#!/bin/sh
-set -ex
-
-# Remove PackageKit and Arch AppStream metadata to keep Discover Flatpak-first
-pacman -Rns --noconfirm archlinux-appstream-data || true
