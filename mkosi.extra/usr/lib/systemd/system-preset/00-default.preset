@@ -9,9 +9,10 @@ enable plasma-setup.service
 enable sddm.service
 enable switcheroo-control.service
 enable systemd-oomd.service
+enable systemd-timesyncd.service
 enable systemd-zram-setup@zram0.service
-enable tuned.service
 enable tuned-ppd.service
+enable tuned.service
 
 disable archlinux-keyring-wkd-sync.timer
 disable dirmngr@etc-pacman.d-gnupg.socket
