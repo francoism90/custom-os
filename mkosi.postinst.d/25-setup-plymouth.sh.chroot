@@ -1,0 +1,12 @@
+#!/bin/sh
+set -ex
+
+# Enable Plymouth in mkinitcpio
+
+if grep -q "^HOOKS=" /etc/mkinitcpio.conf; then
+    # Add plymouth to HOOKS if not already present
+    if ! grep -q "plymouth" /etc/mkinitcpio.conf; then
+        sed -i 's/^HOOKS=\(.*\)base/HOOKS=\1base udev plymouth/' /etc/mkinitcpio.conf
+        echo "Plymouth enabled in mkinitcpio.conf"
+    fi
+fi
