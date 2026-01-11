@@ -1,11 +1,23 @@
 #!/bin/sh
 set -ex
 
-# Build initramfs and UKI using mkinitcpio presets
-if command -v mkinitcpio >/dev/null; then
-  mkinitcpio -P
-fi
+# Determine kernel version
+kver=$(ls -1 /usr/lib/modules | head -n1)
+[ -n "$kver" ] || { echo "No kernel found"; exit 1; }
 
-# Log UKI path if present
-kver_dir=$(ls -1 /usr/lib/modules | head -n1)
-[ -n "$kver_dir" ] && [ -e "/usr/lib/modules/$kver_dir/customos.efi" ] && echo "UKI: /usr/lib/modules/$kver_dir/customos.efi"
+# Ensure output directory exists
+mkdir -p "/usr/lib/modules/$kver"
+
+# Build initramfs
+mkinitcpio -k "$kver" -g /boot/initramfs-linux.img -c /etc/mkinitcpio.conf
+
+# Build UKI with embedded cmdline
+if command -v ukify >/dev/null || command -v systemd-ukify >/dev/null; then
+  UKIFY=$(command -v ukify || command -v systemd-ukify)
+  "$UKIFY" build \
+    --linux "/usr/lib/modules/$kver/vmlinuz" \
+    --initrd /boot/initramfs-linux.img \
+    --cmdline 'rw lsm=landlock,lockdown,yama,integrity,apparmor,bpf nowatchdog quiet splash' \
+    --output "/usr/lib/modules/$kver/customos.efi"
+  echo "UKI: /usr/lib/modules/$kver/customos.efi"
+fi
