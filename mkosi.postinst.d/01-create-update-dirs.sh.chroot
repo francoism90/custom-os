@@ -1,6 +1,5 @@
-#!/bin/sh -eux
+#!/bin/sh
+set -ex
 
 # Create directory for systemd-sysupdate
 mkdir -p /var/lib/updates
-
-exit 0

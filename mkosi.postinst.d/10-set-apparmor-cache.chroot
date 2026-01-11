@@ -1,4 +1,5 @@
-#!/bin/sh -eux
+#!/bin/sh
+set -ex
 
 # Configure AppArmor parser cache settings
 mkdir -p /etc/apparmor/earlypolicy/
@@ -7,5 +8,3 @@ write-cache
 Optimize=compress-fast
 cache-loc /etc/apparmor/earlypolicy/
 EOF
-
-exit 0
