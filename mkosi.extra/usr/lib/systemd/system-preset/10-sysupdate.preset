@@ -1,0 +1,2 @@
+enable systemd-sysupdate.timer
+enable systemd-sysupdate-reboot.timer

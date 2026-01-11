@@ -1,0 +1,6 @@
+#!/bin/sh -eux
+
+# Create directory for systemd-sysupdate
+mkdir -p /var/lib/updates
+
+exit 0
