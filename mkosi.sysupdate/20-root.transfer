@@ -1,0 +1,12 @@
+[Transfer]
+ProtectVersion=%A
+
+[Source]
+Type=regular-file
+Path=/var/lib/updates/
+PathRelativeTo=root
+MatchPattern=%i_%v.raw
+
+[Target]
+Type=subvolume
+MatchPartitionType=root
