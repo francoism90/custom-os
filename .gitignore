@@ -14,8 +14,6 @@ mkosi.extra/boot/EFI/
 mkosi.extra/usr/local/bin/
 mkosi.extra/usr/lib/verity.d/
 
-mkosi.packages/incusos-initrd-utils*
-
 *.swp
 
 # MacOS
