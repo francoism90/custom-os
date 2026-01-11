@@ -1,0 +1,5 @@
+enable apparmor.service
+enable bluetooth.service
+enable NetworkManager.service
+enable sddm.service
+enable tuned.service
