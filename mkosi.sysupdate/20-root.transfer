@@ -9,4 +9,6 @@ MatchPattern=%i_%v.raw
 
 [Target]
 Type=subvolume
-MatchPartitionType=root
+Path=/
+PathRelativeTo=root
+MatchPattern=@root-@v
