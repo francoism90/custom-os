@@ -2,7 +2,7 @@
 set -ex
 
 # Set default Plymouth theme for a polished boot experience
-KEEP_THEME="breeze-bgrt"
+KEEP_THEME="bgrt"
 
 if command -v plymouth-set-default-theme >/dev/null 2>&1; then
     plymouth-set-default-theme "$KEEP_THEME" || true
