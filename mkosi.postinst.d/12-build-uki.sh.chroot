@@ -1,0 +1,35 @@
+#!/bin/sh
+set -ex
+
+# Build and install a UKI under /usr/lib/modules/$kver for mkosi to find/sign
+# Requires: systemd-ukify, mkinitcpio, linux kernel installed
+
+# Determine kernel version directory installed in the image
+kver=$(ls -1 /usr/lib/modules | head -n1)
+[ -n "$kver" ] || { echo "No kernel version found under /usr/lib/modules"; exit 1; }
+
+# Ensure initramfs exists (mkinitcpio usually creates it via packaging hooks)
+if [ ! -e /boot/initramfs-linux.img ]; then
+  mkinitcpio -k /boot/vmlinuz-linux -g /boot/initramfs-linux.img -c /etc/mkinitcpio.conf
+fi
+
+mkdir -p "/usr/lib/modules/$kver"
+
+# Read KernelCommandLine from mkosi.conf if present in the image (fallback to a sane default)
+CMDLINE=$(awk -F= '/^KernelCommandLine=/{print $2}' /etc/mkosi.conf 2>/dev/null || true)
+[ -n "$CMDLINE" ] || CMDLINE="rw quiet splash"
+
+# Find ukify tool (prefer 'ukify', fallback to 'systemd-ukify')
+UKIFY_TOOL=$(command -v ukify || command -v systemd-ukify || true)
+[ -n "$UKIFY_TOOL" ] || { echo "ukify/systemd-ukify not found"; exit 1; }
+
+# Build UKI (systemd-ukify expects the 'build' subcommand)
+"$UKIFY_TOOL" build \
+  --linux /boot/vmlinuz-linux \
+  --initrd /boot/initramfs-linux.img \
+  --cmdline "$CMDLINE" \
+  --output "/usr/lib/modules/$kver/customos.efi"
+
+# If SecureBootSignTool is configured, mkosi will sign this UKI later; no signing here.
+
+echo "UKI installed at /usr/lib/modules/$kver/customos.efi"
