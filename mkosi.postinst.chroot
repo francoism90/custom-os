@@ -1,4 +1,0 @@
-#!/bin/sh
-set -ex
-
-btrfs subvolume set-default $(btrfs subvolume list / | grep " @\$" | awk '{print $2}') /
