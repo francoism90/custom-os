@@ -9,4 +9,4 @@ default_image="/boot/initramfs-linux.img"
 # %v expands to the kernel version, e.g. 6.18.4-arch1-1
 default_uki="/usr/lib/modules/%v/customos.efi"
 # Embed a static cmdline matching mkosi.conf; adjust as needed
-default_options="--cmdline 'rw quiet splash'"
+default_options="--cmdline 'rw lsm=landlock,lockdown,yama,integrity,apparmor,bpf nowatchdog quiet splash'"
