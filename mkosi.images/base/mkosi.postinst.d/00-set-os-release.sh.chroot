@@ -1,0 +1,11 @@
+#!/bin/sh
+
+cat > /usr/lib/os-release <<EOF
+PRETTY_NAME="$IMAGE_ID $IMAGE_VERSION"
+NAME="$IMAGE_ID"
+VERSION="$IMAGE_VERSION"
+ID="$IMAGE_ID"
+HOME_URL="https://github.com/francoism90/custom-os"
+SUPPORT_URL="https://github.com/francoism90/custom-os/issues"
+BUG_REPORT_URL="https://github.com/francoism90/custom-os/issues"
+EOF
