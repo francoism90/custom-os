@@ -1,0 +1,8 @@
+#!/bin/sh
+set -ex
+
+# Initialize package keyring for Arch Linux
+if command -v pacman-key >/dev/null; then
+    pacman-key --init
+    pacman-key --populate
+fi
