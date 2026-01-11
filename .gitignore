@@ -1,5 +1,6 @@
 .cache
 debian-tools
+mkosi.cache
 mkosi.output
 .mkosi-private
 
