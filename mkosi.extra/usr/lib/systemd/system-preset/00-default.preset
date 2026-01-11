@@ -1,5 +1,21 @@
+enable accounts-daemon.service
 enable apparmor.service
 enable bluetooth.service
 enable NetworkManager.service
 enable sddm.service
 enable tuned.service
+enable avahi-daemon.service
+enable avahi-daemon.socket
+enable systemd-oomd.service
+enable systemd-zram-setup@zram0.service
+enable switcheroo-control.service
+
+disable archlinux-keyring-wkd-sync.timer
+disable dirmngr@etc-pacman.d-gnupg.socket
+disable gpg-agent-browser@etc-pacman.d-gnupg.socket
+disable gpg-agent@etc-pacman.d-gnupg.socket
+disable gpg-agent-extra@etc-pacman.d-gnupg.socket
+disable gpg-agent-ssh@etc-pacman.d-gnupg.socket
+disable keyboxd@etc-pacman.d-gnupg.socket
+disable systemd-networkd.service
+disable systemd-networkd-wait-online.service
